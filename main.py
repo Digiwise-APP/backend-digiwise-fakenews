@@ -5,11 +5,25 @@ from typing import Dict, List, Text, Tuple, Any
 from pydantic import BaseModel, validator
 
 from fastapi import FastAPI, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
+
 
 import model
 from scraper import Scrap
 
 app = FastAPI()
+
+app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
